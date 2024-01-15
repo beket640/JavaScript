@@ -33,17 +33,14 @@
             let task = document.createElement("div")
             let task_text = document.createElement("div")
             let task_id = document.createElement("div")
-            //let img=document.createElement("img")
-            //
-            //img.src=prompt()
-            //img.width=150
+
             task.className = "task"
             task_text.className = "task-text"
             task_id.className = "task-id"
 
             task_text.innerHTML = text
             task_id.innerHTML = id
-            task.innerHTML = task_text.outerHTML + task_id.outerHTML + img.outerHTML
+            task.innerHTML = task_text.outerHTML + task_id.outerHTML
             document.getElementById("tasks").appendChild(task)
         }
         function showTasks() {
