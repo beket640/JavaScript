@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="input-task">
+                <input id="text" type="text" placeholder="Какие у вас планы на завтра?">
+                <button type="button" onclick="addTask()" class="button-task">Добавить</button>
+            </div>
+            <div class="input-task">
+                <input id="id" type="text" placeholder="Удалить по ID">
+                <button onclick="deleteTask()" class="button-task">Удалить!</button>
+            </div>
+            <button id="delete" onclick="deleteAll()">Удалить все!</button>
+        </form>
+        <div class="tasks" id="tasks">
+        </div>
+    </div>
+    <script>
+        function addTask() {
+            let text = document.getElementById("text").value
+            let id = localStorage.length + 1
+
+            localStorage.setItem(id, text)
+
+            let task = document.createElement("div")
+            let task_text = document.createElement("div")
+            let task_id = document.createElement("div")
+            let img=document.createElement("img")
+
+            img.src=prompt()
+            img.width=150
+            task.className = "task"
+            task_text.className = "task-text"
+            task_id.className = "task-id"
+
+            task_text.innerHTML = text
+            task_id.innerHTML = id
+            task.innerHTML = task_text.outerHTML + task_id.outerHTML + img.outerHTML
+            document.getElementById("tasks").appendChild(task)
+        }
+        function showTasks() {
+            for (let i = 1; i <= localStorage.length; i++) {
+                let text = localStorage.getItem(i)
+
+                let task = document.createElement("div")
+                let task_text = document.createElement("div")
+                let task_id = document.createElement("div")
+
+                task.className = "task"
+                task_text.className = "task-text"
+                task_id.className = "task-id"
+
+                task_text.innerHTML = text
+                task_id.innerHTML = i
+                task.innerHTML = task_text.outerHTML + task_id.outerHTML
+                document.getElementById("tasks").appendChild(task)
+            }
+
+        }
+        showTasks()
+        function deleteTask() {
+            let id = document.getElementById("id").value
+            localStorage.removeItem(id)
+        }
+        function deleteAll() {
+            localStorage.clear()
+        }
+    </script>
+</body>
+
+</html>
